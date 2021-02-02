@@ -1,17 +1,21 @@
 /* NIVELL 1 */
 
-function showOnConsoleEmail() {
-    var email= document.getElementById("email").value;
-    console.log('Este es el mail: ' + email);
-}
 
-function showOnConsoleName() {
-  var name= document.getElementById("name").value;
-  console.log('Este es el nombre: ' + name);
+function showOnConsole() {
+  var form = {
+    email: document.getElementById("email").value,
+    firstname: document.getElementById("name").value,
+    surname: document.getElementById("surname").value,
 }
-
-function showOnConsoleSurname() {
-  var surname= document.getElementById("surname").value;
-  console.log('Este es el apellido: ' + surname);
+  if(form.email !== "") {
+    console.log('Este es el mail: ' + form.email);
+  }
+  if(form.firstname !== "") {
+    console.log('Este es el nombre: ' + form.firstname);
+  }
+  if(form.surname !== "") {
+    console.log('Este es el apellido: ' + form.surname);
+  }
+    
+    
 }
-
