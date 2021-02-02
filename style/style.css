@@ -1,0 +1,17 @@
+
+/* LOGIN */
+
+.form-border {
+    border-radius: 10px;
+    background-color: rgba(0, 128, 0, 0.171);
+    max-width: 350px;
+}
+
+.message-container-styling {
+    color: red;
+    font-weight: bold;
+    background-color:  rgba(3, 80, 3, 0.267);
+    border-radius: 10px;
+    padding: .4rem 1rem;
+    margin: .4rem 1rem;
+}
