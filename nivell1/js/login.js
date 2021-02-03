@@ -9,13 +9,9 @@ function showOnConsole() {
 }
   if(form.email !== "") {
     console.log('Este es el mail: ' + form.email);
-  }
-  if(form.firstname !== "") {
+  } else if (form.firstname !== "") {
     console.log('Este es el nombre: ' + form.firstname);
-  }
-  if(form.surname !== "") {
+  } else if (form.surname !== "") {
     console.log('Este es el apellido: ' + form.surname);
   }
-    
-    
 }

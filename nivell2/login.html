@@ -19,9 +19,11 @@
 
 <body>
   <!-- Form -->
-  <section class="container mt-5 mb-3 table-bordered form-border">
+  <div class="d-flex">
+  <section class="container mt-5 mb-3 table-bordered form-border w-50">
+    
     <h5 class="text-center mt-3">Acceso</h5>
-    <form class="pt-3 pb-5" id="form" onchange="showOnConsole()">
+    <form class="pt-3 pb-5" id="form" >
         <div class="form-group mt-2">
             <label for="email">Dirección de email</label>
             <input type="email" class="form-control mt-2" id="email" name="email" aria-describedby="emailHelp" placeholder="Pon tu email">
@@ -34,16 +36,21 @@
             <label for="surname">Apellido</label>
             <input type="text" class="form-control mt-2" id="surname" name="surname" placeholder="Escribe tu apellido">
         </div>
-        <div class="row mt-4">
-            <div class="col text-center">
-                <button type="submit" class="btn btn-success align-center" id="login-button" value="Submit">Enviar</button>
-            </div>
-        </div>
+        
     </form>
-    </div>      
+    <div class="row pb-4">
+      <div class="col text-center">
+          <button class="btn btn-success align-center" id="login-button" onclick="addItem()">Enviar</button>
+      </div>
+  </div>     
         <div class="message-container">
     </div>
 </section>
+<aside class="w-50">
+  <div id="theInfo"><h1>hola</h1></div>
+</aside>
+</div>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
