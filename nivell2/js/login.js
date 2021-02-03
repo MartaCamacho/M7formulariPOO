@@ -21,12 +21,14 @@ function addItem(){
   var text = document.createElement("div");
   var deleteButton = document.createElement("button");
   text.setAttribute('id',user.email);
-  text.appendChild(document.createTextNode('Este es el mail: ' + `${user.email}` + ' Este es el nombre: ' + `${user.firstname}` + ' Este es el apellido: ' + `${user.surname}`));
+  text.appendChild(document.createTextNode('mail: ' + `${user.email},` + ' nombre: ' + `${user.firstname},` + ' apellido: ' + `${user.surname}.`));
   deleteButton.appendChild(document.createTextNode('Borrar'))
   deleteButton.id = "deleteButton"
   container.appendChild(text);
-  container.appendChild(deleteButton);
+  text.appendChild(deleteButton);
+  text.className="alert alert-info mb-1 mt-1";
   deleteButton.setAttribute("onclick","removeItem()") ;
+  deleteButton.className="btn btn-danger";
 }
 
 function removeItem(){
