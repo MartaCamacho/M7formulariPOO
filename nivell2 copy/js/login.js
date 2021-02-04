@@ -88,6 +88,22 @@ class Notification {
     var user = document.getElementById(n);
     console.log(user, "el user");
     user.remove();
+    
+    var topNotification = document.getElementById(
+      "top-notification-container"
+    );
+    var notificationContainer = document.createElement("div");
+    topNotification.appendChild(notificationContainer);
+    notificationContainer.className =
+      "alert alert-danger alert-dismissible fade show";
+    notificationContainer.appendChild(
+      document.createTextNode("Por favor, rellena todos los campos")
+    );
+    notificationContainer.setAttribute("role", "alert");
+    var dismissButton = document.createElement("button");
+    dismissButton.className = "btn-close";
+    dismissButton.setAttribute("data-bs-dismiss", "alert");
+    notificationContainer.appendChild(dismissButton);
   }
 }
 
@@ -98,6 +114,5 @@ function addTheItem() {
 }
 
 function deteleTheItem() {
-  console.log(element.parentNode, "el papa");
   return notify.removeItem();
 }
