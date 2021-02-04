@@ -19,7 +19,6 @@ class Notification {
       firstname: document.getElementById("name").value,
       surname: document.getElementById("surname").value,
     };
-    console.log(form.email, "la form");
     if (form.email === "" || form.firstname === "" || form.surname === "") {
       var topNotification = document.getElementById(
         "top-notification-container"
@@ -57,7 +56,7 @@ class Notification {
       container.appendChild(text);
       text.appendChild(deleteButton);
       text.className = "alert alert-info mb-1 mt-1";
-      deleteButton.setAttribute("onclick", "this.parentElement.remove()");
+      deleteButton.setAttribute("onclick", "this.parentElement.remove(); deteleTheItem()");
       deleteButton.className = `btn btn-danger ${user.email}`;
 
       var topNotification = document.getElementById(
@@ -79,16 +78,6 @@ class Notification {
   }
 
   removeItem() {
-    var form = {
-      email: document.getElementById("email").value,
-      firstname: document.getElementById("name").value,
-      surname: document.getElementById("surname").value,
-    };
-    var n = form.email;
-    var user = document.getElementById(n);
-    console.log(user, "el user");
-    user.remove();
-    
     var topNotification = document.getElementById(
       "top-notification-container"
     );
@@ -97,7 +86,7 @@ class Notification {
     notificationContainer.className =
       "alert alert-danger alert-dismissible fade show";
     notificationContainer.appendChild(
-      document.createTextNode("Por favor, rellena todos los campos")
+      document.createTextNode("Eliminado con éxito")
     );
     notificationContainer.setAttribute("role", "alert");
     var dismissButton = document.createElement("button");

@@ -34,28 +34,10 @@ class Notification {
     deleteButton.setAttribute("onclick","this.parentElement.remove()");
     deleteButton.className=`btn btn-danger ${user.email}`;
   }
-  
-  removeItem(){
-    var form = {
-      email: document.getElementById("email").value,
-      firstname: document.getElementById("name").value,
-      surname: document.getElementById("surname").value,
-  }
-    var n = form.email
-    var user = document.getElementById(n);
-    console.log(user, 'el user')
-    user.remove();
-  }
-
 }
 
 const notify = new Notification(form)
 
 function addTheItem() {
   return notify.addItem()
-}
-
-function deteleTheItem() {
-  console.log(element.parentNode, 'el papa')
-  return notify.removeItem()
 }
