@@ -1,5 +1,7 @@
 
+
 /* NIVELL 2 */
+
 
 class User {
   constructor (email, firstname, surname) {
