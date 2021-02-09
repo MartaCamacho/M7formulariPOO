@@ -8,7 +8,6 @@ class User {
   }
 }
 
-
 var arr = [];
 
 class Notification {
@@ -22,6 +21,7 @@ class Notification {
       firstname: document.getElementById("name").value,
       surname: document.getElementById("surname").value,
     };
+    
     function checkDuplicate() {
       let map = {};
       let result = false;
@@ -50,7 +50,11 @@ class Notification {
         notificationContainer.appendChild(dismissButton);
       } else {
         arr.push(form.email);
-        console.log(arr, "array");
+        function validateEmail(x) {
+          const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(x);
+        }
+        const validate = validateEmail(form.email);
 
         if (form.email === "" || form.firstname === "" || form.surname === "") {
           var topNotification = document.getElementById(
@@ -62,6 +66,22 @@ class Notification {
             "alert alert-danger alert-dismissible fade show";
           notificationContainer.appendChild(
             document.createTextNode("Por favor, rellena todos los campos")
+          );
+          notificationContainer.setAttribute("role", "alert");
+          var dismissButton = document.createElement("button");
+          dismissButton.className = "btn-close";
+          dismissButton.setAttribute("data-bs-dismiss", "alert");
+          notificationContainer.appendChild(dismissButton);
+        } else if (validate === false){
+          var topNotification = document.getElementById(
+            "top-notification-container"
+          );
+          var notificationContainer = document.createElement("div");
+          topNotification.appendChild(notificationContainer);
+          notificationContainer.className =
+            "alert alert-danger alert-dismissible fade show";
+          notificationContainer.appendChild(
+            document.createTextNode("El email no es válido")
           );
           notificationContainer.setAttribute("role", "alert");
           var dismissButton = document.createElement("button");
