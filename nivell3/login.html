@@ -25,7 +25,7 @@
     <!-- Form -->
 
     <div class="d-flex flex-column justify-center">
-      <span id="top-notification-container"></span>
+      <span class="container-size" id="top-notification-container"></span>
       <div class="d-flex">
         <section class="container mt-5 mb-3 table-bordered form-border w-50">
           <h5 class="text-center mt-3">Acceso</h5>
@@ -66,9 +66,11 @@
           <div class="row pb-4">
             <div class="col text-center">
               <button
+                type="submit"
                 class="btn btn-success align-center"
                 id="login-button"
                 onclick="addTheItem()"
+                onsubmit="resetform()"
               >
                 Enviar
               </button>
