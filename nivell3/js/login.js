@@ -8,7 +8,9 @@ class User {
   }
 }
 
-var arr = [];
+var items = [];
+let result = false;
+console.log(result)
 
 class Notification {
   constructor(item) {
@@ -23,33 +25,51 @@ class Notification {
     };
     
     function checkDuplicate() {
-      let map = {};
-      let result = false;
-      for (let i = 0; i < arr.length; i++) {
-        if (map[arr[i]]) {
+
+    function add(item) {
+      if(result === false){
+        if(items.indexOf(item) === -1) {
+          items.push(item);
+          console.log(items.indexOf(item), 'el item');
+        } else if(items.indexOf(item) !== -1) {
+          console.log(items, 'el otro item');
           result = true;
-          break;
+          console.log(result)
         }
-        map[arr[i]] = true;
+      } else {
+        console.log('error')
       }
-      if (result) {
-        var topNotification = document.getElementById(
-          "top-notification-container"
-        );
-        var notificationContainer = document.createElement("div");
+    }
+
+
+      var notificationContainer = document.createElement("div");
+      var topNotification = document.getElementById(
+        "top-notification-container"
+      );
+      var dismissButton = document.createElement("button");
+
+      function textNodeAlertClass(nodeClass, text) {
         topNotification.appendChild(notificationContainer);
         notificationContainer.className =
-          "alert alert-danger alert-dismissible fade show";
+          `alert alert-dismissible fade show ${nodeClass}`;
         notificationContainer.appendChild(
-          document.createTextNode("El email no puede estar repetido")
+          document.createTextNode(`${text}`)
         );
         notificationContainer.setAttribute("role", "alert");
-        var dismissButton = document.createElement("button");
+      }
+
+      function dismissButtonClass() {
         dismissButton.className = "btn-close";
         dismissButton.setAttribute("data-bs-dismiss", "alert");
         notificationContainer.appendChild(dismissButton);
+      }
+
+      if (result === true) {
+        textNodeAlertClass("alert-danger", "El email no puede estar repetido")
+        dismissButtonClass();
       } else {
-        arr.push(form.email);
+        add(form.email)
+        items.push(form.email);
         function validateEmail(x) {
           const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return re.test(x);
@@ -57,37 +77,11 @@ class Notification {
         const validate = validateEmail(form.email);
 
         if (form.email === "" || form.firstname === "" || form.surname === "") {
-          var topNotification = document.getElementById(
-            "top-notification-container"
-          );
-          var notificationContainer = document.createElement("div");
-          topNotification.appendChild(notificationContainer);
-          notificationContainer.className =
-            "alert alert-danger alert-dismissible fade show";
-          notificationContainer.appendChild(
-            document.createTextNode("Por favor, rellena todos los campos")
-          );
-          notificationContainer.setAttribute("role", "alert");
-          var dismissButton = document.createElement("button");
-          dismissButton.className = "btn-close";
-          dismissButton.setAttribute("data-bs-dismiss", "alert");
-          notificationContainer.appendChild(dismissButton);
+          textNodeAlertClass("alert-danger", "Por favor, rellena todos los campos");
+          dismissButtonClass();
         } else if (validate === false){
-          var topNotification = document.getElementById(
-            "top-notification-container"
-          );
-          var notificationContainer = document.createElement("div");
-          topNotification.appendChild(notificationContainer);
-          notificationContainer.className =
-            "alert alert-danger alert-dismissible fade show";
-          notificationContainer.appendChild(
-            document.createTextNode("El email no es válido")
-          );
-          notificationContainer.setAttribute("role", "alert");
-          var dismissButton = document.createElement("button");
-          dismissButton.className = "btn-close";
-          dismissButton.setAttribute("data-bs-dismiss", "alert");
-          notificationContainer.appendChild(dismissButton);
+          textNodeAlertClass("alert-danger", "El email no es válido")
+          dismissButtonClass()
         } else {
           var container = document.getElementById("theInfo");
           var user = new User(form.email, form.firstname, form.surname);
@@ -115,23 +109,8 @@ class Notification {
             "this.parentElement.remove(); deteleTheItem()"
           );
           deleteButton.className = `btn btn-danger ${user.email}`;
-
-          var topNotification = document.getElementById(
-            "top-notification-container"
-          );
-          var notificationContainer = document.createElement("div");
-          topNotification.appendChild(notificationContainer);
-          notificationContainer.className =
-            "alert alert-success alert-dismissible fade show  d-flex justify-content-between";
-          notificationContainer.appendChild(
-            document.createTextNode("Usuario creado correctamente")
-          );
-          notificationContainer.setAttribute("role", "alert");
-
-          var dismissButton = document.createElement("button");
-          dismissButton.className = "btn-close";
-          dismissButton.setAttribute("data-bs-dismiss", "alert");
-          notificationContainer.appendChild(dismissButton);
+          textNodeAlertClass(" alert-success d-flex justify-content-between", "Usuario creado correctamente")
+          dismissButtonClass()
         }
       }
     }
@@ -156,29 +135,22 @@ class Notification {
 }
 
 const notify = new Notification(form);
+var topNotification = document.getElementById("top-notification-container");
+function myFunction() {
+  var myVar;
+  myVar = setTimeout(alertFunc, 2500);
+}
+
+function alertFunc() {
+  topNotification.removeChild(topNotification.firstChild);
+}
 
 function addTheItem() {
-  function myFunction() {
-    var myVar;
-    myVar = setTimeout(alertFunc, 2500);
-  }
-  var topNotification = document.getElementById("top-notification-container");
-  function alertFunc() {
-    topNotification.removeChild(topNotification.firstChild);
-  }
   myFunction();
   return notify.addItem();
 }
 
 function deteleTheItem() {
-  function myFunction() {
-    var myVar;
-    myVar = setTimeout(alertFunc, 2500);
-  }
-  var topNotification = document.getElementById("top-notification-container");
-  function alertFunc() {
-    topNotification.removeChild(topNotification.firstChild);
-  }
   myFunction();
   return notify.removeItem();
 }
