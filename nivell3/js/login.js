@@ -10,7 +10,6 @@ class User {
 
 var items = [];
 let result = false;
-console.log(result)
 
 class Notification {
   constructor(item) {
@@ -30,11 +29,8 @@ class Notification {
       if(result === false){
         if(items.indexOf(item) === -1) {
           items.push(item);
-          console.log(items.indexOf(item), 'el item');
         } else if(items.indexOf(item) !== -1) {
-          console.log(items, 'el otro item');
           result = true;
-          console.log(result)
         }
       } else {
         console.log('error')
